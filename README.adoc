@@ -1,8 +1,23 @@
-= Getting started with Spring for GraphQL
+= Building a GraphQL service with Spring for GraphQL
 
 // dz todo after: tone review
 
-In this tutorial, you will create a GraphQL server in Java using https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL].
+This guides walks you through the process of creating a GraphQL service in Java using https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL].
+
+== What You Will Build
+You will build a service that will accept GraphQL requests at `http://localhost:8080/graphql`.
+
+== What You Need
+
+* About 15 minutes
+* A favorite text editor or IDE
+* JDK 17 or later (required for Spring Boot 3.x)
+// dz todo Gradle or Maven requirement levels
+
+== How to complete this guide
+
+== Starting with Spring Initializr
+
 
 It requires a little Spring and Java knowledge.
 
@@ -19,7 +34,7 @@ With GraphQL you send the following query to the server to get the details for t
 
 [,graphql]
 ----
-{
+query bookDetails {
   bookById(id: "book-1"){
     id
     name
@@ -346,6 +361,9 @@ With the help of Spring for GraphQL features, we were able to achieve this with 
 // dz todo: adding a few tests to verify this works
 // dz todo: link to documentation
 
+== Summary
+Congratulations! You have developed a GraphQL service with Spring for GraphQL.
+
 == Further reading
 
 === Sample source code
@@ -357,7 +375,7 @@ The source code for this tutorial can be found on https://github.com/graphql-jav
 
 Read the Spring for GraphQL https://docs.spring.io/spring-graphql/docs/current/reference/html/[documentation].
 
-Read the GraphQL Java https://www.graphql-java.com/documentation/getting-started[documentation].
+GraphQL Java is the GraphQL engine powering Spring for GraphQL. Read the GraphQL Java https://www.graphql-java.com/documentation/getting-started[documentation].
 
 === More Spring for GraphQL examples
 
@@ -367,4 +385,6 @@ See more examples in the https://github.com/spring-projects/spring-graphql/tree/
 === GitHub Discussions
 // dz todo: add link to Spring for GraphQL Stack Overflow
 
-We also use https://github.com/graphql-java/graphql-java/discussions[GitHub Discussions] for any questions or problems.
+Want to write a new guide or contribute to an existing one? Check out our https://github.com/spring-guides/getting-started-guides/wiki[contribution guidelines].
+
+All guides are released with an ASLv2 license for the code, and an https://creativecommons.org/licenses/by-nd/3.0/[Attribution, NoDerivatives creative commons license] for the writing.
