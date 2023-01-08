@@ -68,11 +68,11 @@ The response is JSON:
 {
   "bookById": {
     "id":"book-1",
-    "name":"Harry Potter and the Philosopher's Stone",
-    "pageCount":223,
+    "name":"Effective Java",
+    "pageCount":416,
     "author": {
-      "firstName":"Joanne",
-      "lastName":"Rowling"
+      "firstName":"Joshua",
+      "lastName":"Bloch"
     }
   }
 }
@@ -130,28 +130,6 @@ Our example app will be a simple API to get details for a specific book.
 This is in no way a comprehensive API, but it is enough for this tutorial.
 
 == Create a Spring Boot app
-
-The easiest way to create a Spring Boot app is to use the https://start.spring.io/[Spring Initializr].
-
-Select:
-
-* Gradle Project
-* Java
-* Spring Boot 3.0.x
-
-For the project metadata, use:
-
-* Group: `com.graphql-java.tutorial`
-* Artifact: `bookDetails`
-
-For dependencies, use:
-
-* Spring Web
-* Spring for GraphQL
-
-Then click on `Generate` for a ready to use Spring Boot app.
-All subsequently mentioned files and paths will be relative to this generated project.
-
 Spring for GraphQL adds many useful features including loading schema files, initializing GraphQL Java, and simplifying data fetching with controller annotations.
 
 == Schema
