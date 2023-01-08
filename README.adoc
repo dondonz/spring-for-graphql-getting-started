@@ -1,36 +1,29 @@
 = Building a GraphQL service with Spring for GraphQL
 
-// dz todo after: tone review
-
-This guides walks you through the process of creating a GraphQL service in Java using https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL].
+This guide walks you through the process of creating a GraphQL service in Java using https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL].
 
 == What You Will Build
 You will build a service that will accept GraphQL requests at `http://localhost:8080/graphql`.
 
 == What You Need
 
-* About 15 minutes
-* A favorite text editor or IDE
-* JDK 17 or later (required for Spring Boot 3.x)
-// dz todo Gradle or Maven requirement levels
+:java_version: 17
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/prereq_editor_jdk_buildtools.adoc[]
 
-== How to complete this guide
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/how_to_complete_this_guide.adoc[]
 
 == Starting with Spring Initializr
-
-
-It requires a little Spring and Java knowledge.
-
-While we give a brief introduction to GraphQL, the focus of this tutorial is developing a GraphQL server in Java.
+Navigate to https://start.spring.io/[Spring Initializr].
+// dz todo - starting with initializr
 
 == A very short introduction to GraphQL
 
 GraphQL is a query language to retrieve data from a server.
-It is an alternative to REST, SOAP or gRPC.
+It is an alternative to REST, SOAP, or gRPC.
 
-Let's suppose we want to query the details for a specific book from an online store backend.
+In this tutorial, we will query the details for a specific book from an online store backend.
 
-With GraphQL you send the following query to the server to get the details for the book with the id "book-1":
+This is how to send a GraphQL query to the server to retrieve details for the book with id "book-1":
 
 [,graphql]
 ----
@@ -47,15 +40,13 @@ query bookDetails {
 }
 ----
 
-This is not JSON (even though it looks deliberately similar), it is a GraphQL query.
-
-It basically says:
+This GraphQL query says:
 
 * query a book with a specific id
-* get me the id, name, pageCount and author from that book
+* retrieve the id, name, pageCount and author from that book
 * for the author, I want to know the firstName and lastName
 
-The response is normal JSON:
+The response is JSON:
 
 [,json]
 ----
@@ -335,7 +326,7 @@ Type in the query and hit the play button at the top of the window.
 
 [,graphql]
 ----
-query {
+query bookDetails {
   bookById(id: "book-1") {
     id
     name
@@ -349,41 +340,40 @@ query {
 }
 ----
 
-// dz todo: fix image link
+// dz todo: fix image link after re-writing the code
 
 You should see a response like this.
 image:/img/graphiQL.png[GraphQL response]
 
-We have built a GraphQL server and run our first query!
-With the help of Spring for GraphQL features, we were able to achieve this with only a few lines of code.
+We have built a GraphQL service and run our first query! With the help of Spring for GraphQL features, we were able to achieve this with only a few lines of code.
 
 === Testing
 // dz todo: adding a few tests to verify this works
-// dz todo: link to documentation
+
+See the https://docs.spring.io/spring-graphql/docs/current/reference/html/#testing[documentation] for more on testing in Spring for GraphQL.
 
 == Summary
-Congratulations! You have developed a GraphQL service with Spring for GraphQL.
+Congratulations! You have built a GraphQL service with Spring for GraphQL.
 
 == Further reading
 
 === Sample source code
 
-// dz todo: update to this new repo's link
-The source code for this tutorial can be found on https://github.com/graphql-java/tutorials[GitHub].
+The source code for this tutorial can be found on https://github.com/spring-guides/graphql-server[GitHub].
 
 === Documentation
 
-Read the Spring for GraphQL https://docs.spring.io/spring-graphql/docs/current/reference/html/[documentation].
+Read the https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL documentation].
 
-GraphQL Java is the GraphQL engine powering Spring for GraphQL. Read the GraphQL Java https://www.graphql-java.com/documentation/getting-started[documentation].
+GraphQL Java is the GraphQL engine powering Spring for GraphQL. Read the https://www.graphql-java.com/documentation/getting-started[GraphQL Java documentation].
 
 === More Spring for GraphQL examples
 
-// dz todo: link has changed
-See more examples in the https://github.com/spring-projects/spring-graphql/tree/main/samples[Spring for GraphQL GitHub repo].
+See more samples in the
+https://github.com/spring-projects/spring-graphql/tree/1.0.x/samples[1.0.x branch], which will soon be https://github.com/spring-projects/spring-graphql/issues/208[moved into] a separate repository.
 
-=== GitHub Discussions
-// dz todo: add link to Spring for GraphQL Stack Overflow
+=== Stack Overflow questions
+You can raise questions on https://stackoverflow.com/questions/tagged/spring-graphql[Stack Overflow with the spring-graphql] tag.
 
 Want to write a new guide or contribute to an existing one? Check out our https://github.com/spring-guides/getting-started-guides/wiki[contribution guidelines].
 
