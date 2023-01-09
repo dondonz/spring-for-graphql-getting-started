@@ -32,6 +32,7 @@ NOTE: You can also fork the project from https://github.com/spring-guides/graphq
 
 [[initial]]
 == A very short introduction to GraphQL
+// dz todo review - see what is the minimum
 
 GraphQL is a query language to retrieve data from a server.
 It is an alternative to REST, SOAP, or gRPC.
@@ -111,6 +112,7 @@ Further information can be found on the https://graphql.org/learn/[official Grap
 
 == GraphQL Java Overview
 
+// dz todo review - and maybe chop
 https://www.graphql-java.com[GraphQL Java] is the Java (server) implementation for GraphQL.
 There are several repositories in the GraphQL Java Github org.
 The most important one is the https://github.com/graphql-java/graphql-java[GraphQL Java Engine] which is the basis for everything else.
@@ -126,10 +128,10 @@ The main steps of creating a GraphQL Java server are:
 
 == Our example API: getting book details
 
-Our example app will be a simple API to get details for a specific book.
-This is in no way a comprehensive API, but it is enough for this tutorial.
+Our example app will be a simple API to get details for a specific book. It is not intended to be a comprehensive API.
 
 == Create a Spring Boot app
+// dz todo review
 Spring for GraphQL adds many useful features including loading schema files, initializing GraphQL Java, and simplifying data fetching with controller annotations.
 
 == Schema
@@ -163,18 +165,13 @@ This schema defines one top level field (in the type `Query`):  `bookById` which
 It also defines the type `Book` which has the fields: `id`, `name`, `pageCount` and `author`.
 `author` is of type `Author`, which is defined after `Book`.
 
-____
-The Domain Specific Language (shown above) used to describe a schema is called the Schema Definition Language or SDL.
-More details about it can be found https://graphql.org/learn/schema/[here].
-____
+NOTE: The Domain Specific Language used above to describe a schema is called the Schema Definition Language or SDL. See more details in the https://graphql.org/learn/schema/[GraphQL documentation].
 
 == Source of the data
 
+A key strength of GraphQL is that data can be sourced from anywhere. Data can come from a database, an external service, or a static in-memory list.
+
 To simplify the tutorial, book and author data will come from static lists inside their respective classes.
-
-It is very important to understand that GraphQL doesn't dictate in any way where the data comes from.
-
-This is the power of GraphQL: it can come from a static in-memory list, from a database or an external service.
 
 === Create the Book class
 
@@ -280,7 +277,7 @@ The query field is then determined from the method name, `bookById`.
 It could also be declared on the annotation.
 Spring for GraphQL uses `RuntimeWiring.Builder` to register the handler method as a `graphql.schema.DataFetcher` for the query field `bookById`.
 
-In GraphQL Java, `DataFetchingEnvironment` provides access to a map of field-specific argument values.
+In the GraphQL Java engine, `DataFetchingEnvironment` provides access to a map of field-specific argument values.
 Use the `@Argument` annotation to have an argument bound to a target object and injected into the handler method.
 By default, the method parameter name is used to look up the argument.
 The argument name can be specified in the annotation.
