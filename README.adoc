@@ -160,24 +160,14 @@ To simplify the tutorial, book and author data will come from static lists insid
 
 === Create the Book class
 
-Add the following to `bookDetails/Book.java`
+Add the following to `Book.java`. You choose where to save this file, it can be in the same directory as the class containing the `@SpringBootApplication` annotation.
 
-// dz todo: make this a record
 [,java]
 ----
-public class Book {
+import java.util.Arrays;
+import java.util.List;
 
-    private String id;
-    private String name;
-    private int pageCount;
-    private String authorId;
-
-    public Book(String id, String name, int pageCount, String authorId) {
-        this.id = id;
-        this.name = name;
-        this.pageCount = pageCount;
-        this.authorId = authorId;
-    }
+public record Book (String id, String name, int pageCount, String authorId) {
 
     private static List<Book> books = Arrays.asList(
             new Book("book-1", "Effective Java", 416, "author-1"),
@@ -186,37 +176,21 @@ public class Book {
     );
 
     public static Book getById(String id) {
-        return books.stream().filter(book -> book.getId().equals(id)).findFirst().orElse(null);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getAuthorId() {
-        return authorId;
+        return books.stream().filter(book -> book.id().equals(id)).findFirst().orElse(null);
     }
 }
 ----
 
 === Create the Author class
 
-Add the following to `bookDetails/Author.java`
+Add the following to `Author.java`. Save it in the same directory as `Book.java`.
 
-// dz todo: convert to a record
 [,java]
 ----
-public class Author {
+import java.util.Arrays;
+import java.util.List;
 
-    private String id;
-    private String firstName;
-    private String lastName;
-
-    public Author(String id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+public record Author (String id, String firstName, String lastName) {
 
     private static List<Author> authors = Arrays.asList(
             new Author("author-1", "Joshua", "Bloch"),
@@ -225,11 +199,7 @@ public class Author {
     );
 
     public static Author getById(String id) {
-        return authors.stream().filter(author -> author.getId().equals(id)).findFirst().orElse(null);
-    }
-
-    public String getId() {
-        return id;
+        return authors.stream().filter(author -> author.id().equals(id)).findFirst().orElse(null);
     }
 }
 ----
@@ -238,10 +208,15 @@ public class Author {
 
 Spring for GraphQL provides an https://docs.spring.io/spring-graphql/docs/current/reference/html/#controllers[annotation-based programming model] to declare handler methods to fetch the data for specific GraphQL fields.
 
-Add the following to `bookDetails/BookController.java`
+Add the following to `BookController.java`. You choose where to save this file, it can be in the same directory as the class containing the `@SpringBootApplication` annotation.
 
 [,java]
 ----
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.stereotype.Controller;
+
 @Controller
 public class BookController {
     @QueryMapping
@@ -251,7 +226,7 @@ public class BookController {
 
     @SchemaMapping
     public Author author(Book book) {
-        return Author.getById(book.getAuthorId());
+        return Author.getById(book.authorId());
     }
 }
 ----
@@ -314,10 +289,9 @@ query bookDetails {
 }
 ----
 
-// dz todo: fix image link after re-writing the code
-
+// dz todo: amend link with GitHub direct link
 You should see a response like this.
-image:/img/graphiQL.png[GraphQL response]
+image:/graphiQL.png[GraphQL response]
 
 Congratulations, you have built a GraphQL service and run your first query! With the help of Spring for GraphQL, you were able to achieve this with only a few lines of code.
 
