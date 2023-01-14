@@ -110,33 +110,16 @@ This tutorial will focus on how to implement a GraphQL server with this schema i
 We've barely scratched the surface of what's possible with GraphQL.
 Further information can be found on the https://graphql.org/learn/[official GraphQL page].
 
-== GraphQL Java Overview
-
-// dz todo review - and maybe chop
-https://www.graphql-java.com[GraphQL Java] is the Java (server) implementation for GraphQL.
-There are several repositories in the GraphQL Java Github org.
-The most important one is the https://github.com/graphql-java/graphql-java[GraphQL Java Engine] which is the basis for everything else.
-
-The GraphQL Java Engine is only concerned with executing queries.
-It doesn't deal with any HTTP or JSON related topics.
-For these aspects, we will use https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL] which takes care of exposing our API via Spring Boot over HTTP.
-
-The main steps of creating a GraphQL Java server are:
-
-. Defining a GraphQL Schema.
-. Deciding on how the actual data for a query is fetched.
-
 == Our example API: getting book details
+The main steps of creating a https://docs.spring.io/spring-graphql/docs/current/reference/html/[Spring for GraphQL] service are:
+
+. Defining a GraphQL Schema
+. Deciding on how the actual data for a query is fetched
 
 Our example app will be a simple API to get details for a specific book. It is not intended to be a comprehensive API.
 
-== Create a Spring Boot app
-// dz todo review
-Spring for GraphQL adds many useful features including loading schema files, initializing GraphQL Java, and simplifying data fetching with controller annotations.
-
 == Schema
-
-Create a directory `src/main/resources/graphql`.
+In your application you initialized earlier, create a directory `src/main/resources/graphql`.
 
 Add a new file `schema.graphqls` to `src/main/resources/graphql` with the following content:
 
