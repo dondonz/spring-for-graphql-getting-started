@@ -32,7 +32,6 @@ NOTE: You can also fork the project from https://github.com/spring-guides/graphq
 
 [[initial]]
 == A very short introduction to GraphQL
-// dz todo review - see what is the minimum
 
 GraphQL is a query language to retrieve data from a server.
 It is an alternative to REST, SOAP, or gRPC.
@@ -79,11 +78,12 @@ The response is JSON:
 }
 ----
 
-One very important property of GraphQL is that it is statically typed: the server knows exactly the shape of every object you can query and any client can actually "introspect" the server and ask for the "schema".
+An important feature of GraphQL is that it is statically typed. The server knows exactly the shape of every object you can query and any client can introspect the server and ask for the schema.
 The schema describes what queries are possible and what fields you can get back.
-(Note: when we refer to schema here, we always refer to a "GraphQL Schema", which is not related to other schemas like "JSON Schema" or "Database Schema")
 
-The schema for the above query looks like this:
+NOTE: The word schema in this tutorial refers to a "GraphQL Schema", which is not related to other schemas like "JSON Schema" or "Database Schema".
+
+The schema for the above query is:
 
 [,graphql]
 ----
